@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /apple5a/public/
+
+# Si la solicitud no apunta a un archivo o directorio real, redirigirla a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
