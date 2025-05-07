@@ -2,7 +2,7 @@ PHP
 
 <?php
 // En DireccionController.php 
-//modulo del compañero 
+//Modulo del compañero
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
