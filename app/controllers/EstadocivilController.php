@@ -3,6 +3,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 // En estadocivilController.php
+//Modulo de estado civil
 require_once $_SERVER['DOCUMENT_ROOT'] . '/apple5a/config/database.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/apple5a/app/models/Estadocivil.php';
 
