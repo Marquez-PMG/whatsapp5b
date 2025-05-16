@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Personas</title>
-    <link rel="stylesheet" href="/apple5a/public/css/style.css">
+    <link rel="stylesheet" href="/apple6b/public/css/style.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Listar Personas</h1>
-    <a href="/apple5a/app/views/persona/create.php"><button>Agregar</button></a>
+    <h1>Lista de Personas</h1>
+    <a href="/apple6b/public/persona/create"><button>Agregar</button></a>
 
     <table>
         <thead>
@@ -32,11 +32,11 @@
                         <td><?php echo htmlspecialchars($persona['nombres']); ?></td>
                         <td><?php echo htmlspecialchars($persona['apellidos']); ?></td>
                         <td><?php echo htmlspecialchars($persona['fechanacimiento']); ?></td>
-                        <td><?php echo htmlspecialchars($persona['nombre_sexo']); ?></td> <td><?php echo htmlspecialchars($persona['nombre_estadocivil']); ?></td> <td>
-                            <a href="/apple5a/public/persona/editForm?id=<?php echo htmlspecialchars($persona['idpersona']); ?>">
+                        <td><?php echo htmlspecialchars($persona['elsexo']); ?></td> <td><?php echo htmlspecialchars($persona['elestadocivil']); ?></td> <td>
+                            <a href="/apple6b/public/persona/editForm?id=<?php echo htmlspecialchars($persona['idpersona']); ?>">
                                 <button>Editar</button>
                             </a>
-                            <a href="/apple5a/public/persona/deleteForm?id=<?php echo htmlspecialchars($persona['idpersona']); ?>"
+                            <a href="/apple6b/public/persona/deleteForm?id=<?php echo htmlspecialchars($persona['idpersona']); ?>"
                                onclick="return confirm('¿Estás seguro de eliminar esta persona?');">
                                 <button>Eliminar</button>
                             </a>
@@ -52,6 +52,6 @@
     </table>
 </div>
 
-<script src="/apple5a/public/js/script.js"></script>
+<script src="/apple6b/public/js/script.js"></script>
 </body>
 </html>
