@@ -1,11 +1,12 @@
 <?php
 // En PersonaController.php
-// Modulo codificado por cortez
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/apple5a/config/database.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/apple5a/app/models/Persona.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/apple6b/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/apple6b/app/models/Persona.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/apple6b/app/models/Sexo.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/apple6b/app/models/Estadocivil.php';
 
 class PersonaController {
     private $persona;
@@ -14,29 +15,38 @@ class PersonaController {
     public function __construct() {
         $this->db = (new Database())->getConnection();
         $this->persona = new Persona($this->db);
+        $this->sexo = new Sexo($this->db);
+        $this->estadocivil = new Estadocivil($this->db);
     }
 
     // Mostrar todas las personas
     public function index() {
         $personas = $this->persona->read();
+        $sexos = $this->sexo->read();
+        $estadosciviles = $this->estadocivil->read();
         require_once '../app/views/persona/index.php';
     }
 
     // Mostrar el formulario de creación de persona
     public function createForm() {
+
+
+        $sexos = $this->sexo->read();
+            
+        $estadosciviles = $this->estadocivil->read();
         require_once '../app/views/persona/create.php';
     }
 
     // Procesar la creación de una nueva persona
     public function create() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (
-                isset($_POST['nombres']) &&
-                isset($_POST['apellidos']) &&
-                isset($_POST['fechanacimiento']) &&
-                isset($_POST['idsexo']) &&
-                isset($_POST['idestadocivil'])
-            ) {
+    //    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      //      if (
+        //        isset($_POST['nombres']) &&
+          //      isset($_POST['apellidos']) &&
+         //       isset($_POST['fechanacimiento']) &&
+         //       isset($_POST['idsexo']) &&
+         //       isset($_POST['idestadocivil'])
+         //   ) {
                 $this->persona->nombres = $_POST['nombres'];
                 $this->persona->apellidos = $_POST['apellidos'];
                 $this->persona->fechanacimiento = $_POST['fechanacimiento'];
@@ -44,22 +54,30 @@ class PersonaController {
                 $this->persona->idestadocivil = $_POST['idestadocivil'];
 
                 if ($this->persona->create()) {
-                    header('Location: index.php?msg=created');
-                    exit;
+                    echo "personas creada con exito";
+                //    header('Location: index?msg=created');
+          //          exit;
                 } else {
+
+
                     $error = "Error al crear la persona.";
                     require_once '../app/views/persona/create.php'; // Puedes pasar el error a la vista
                     exit;
                 }
-            } else {
-                $error = "Faltan datos en el formulario.";
-                require_once '../app/views/persona/create.php'; // Puedes pasar el error a la vista
-                exit;
-            }
-        } else {
-            header('Location: index.php'); // Redirigir si no es POST
-            exit;
-        }
+         //   } else {
+       // $sexos = $this->sexo->read();
+      //  $estadosciviles = $this->estadocivil->read();
+
+       // die(" 3");
+
+         //       $error = "Faltan datos en el formulario.";
+           //     require_once '../app/views/persona/create.php'; // Puedes pasar el error a la vista
+           //     exit;
+           // }
+       // } else {
+         //   header('Location: index.php'); // Redirigir si no es POST
+          //  exit;
+       // }
     }
 
     // Mostrar el formulario de edición de persona
@@ -144,6 +162,21 @@ class PersonaController {
             exit;
         }
     }
+
+    public function api() {
+
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+
+        $personas = $this->persona->getAll();
+        header('Content-Type: application/json');
+        echo json_encode($personas);
+        exit;
+
+
+
+    }
 }
 
 // Manejo de la acción en la URL
@@ -159,7 +192,7 @@ if (isset($_GET['action'])) {
         $id = null;
     }
 
-    switch ($action) {
+    switch ($_GET['action']) {
         case 'index':
             $controller->index();
             break;
@@ -189,6 +222,10 @@ if (isset($_GET['action'])) {
         case 'delete':
             $controller->delete();
             break;
+        case 'api':
+
+        $controller->api();
+        break;
         default:
             echo "Acción no válida.";
             break;
@@ -196,5 +233,6 @@ if (isset($_GET['action'])) {
 } else {
    // $controller = new PersonaController();
   //  $controller->index(); // Acción por defecto si no se especifica ninguna
+
 }
 ?>

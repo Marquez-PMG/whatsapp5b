@@ -33,9 +33,13 @@ class Persona {
             $stmt->bindParam(":idestadocivil", $this->idestadocivil, PDO::PARAM_INT);
 
             return $stmt->execute();
-
+            echo "grabo";
+            die();
         } catch (PDOException $e) {
+            echo "no grabo:  ".$this->idestadocivil;
+            echo $e->getMessage();
             error_log("Error en create() para persona: " . $e->getMessage());
+            die();
             return false;
         }
     }
@@ -43,7 +47,7 @@ class Persona {
     // Leer todas las personas
     public function read() {
         try {
-            $query = "SELECT * FROM " . $this->table_name;
+            $query = "SELECT * FROM persona1";    // . $this->table_name;
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
 
@@ -98,6 +102,13 @@ class Persona {
             error_log("Error en update() para persona: " . $e->getMessage());
             return false;
         }
+    }
+
+
+    public function getAll() {
+        // Conexión a la base de datos
+        $query = $this->conn->query("SELECT idpersona, nombres, apellidos FROM persona");
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Eliminar una persona
