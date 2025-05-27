@@ -2,7 +2,8 @@ PHP
 
 <?php
 // Modelo Estado Civil
-// modelo mejorado
+
+// modelo actualmente mejorado
 class EstadoCivil {
     private $conn;
     private $table_name = "estadocivil";
