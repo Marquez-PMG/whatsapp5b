@@ -26,6 +26,13 @@ class Sexo {
     }
 
 
+ public function getAll() {
+        // Conexión a la base de datos
+        $query = $this->conn->query("SELECT idsexo, nombre FROM sexo");
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 public function read() {
     try {
         $query = "SELECT * FROM " . $this->table_name;

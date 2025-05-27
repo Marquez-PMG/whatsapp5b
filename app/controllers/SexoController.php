@@ -5,9 +5,9 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 // En SexoController.php
-//Modulo de sexo
-require_once $_SERVER['DOCUMENT_ROOT'] . '/apple5a/config/database.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/apple5a/app/models/Sexo.php';
+//Modulo sexo
+require_once $_SERVER['DOCUMENT_ROOT'] . '/apple6b/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/apple6b/app/models/Sexo.php';
 
 
 
@@ -134,6 +134,29 @@ public function update() {
     die();  // Detener la ejecución para ver los mensajes
 
 }
+
+
+public function api() {
+
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+
+        $sexos = $this->sexo->getAll();
+        header('Content-Type: application/json');
+        echo json_encode($sexos);
+        exit;
+
+
+
+    }
+
+
+
+
+
+
+
 }
 
 /// Manejo de la acción en la URL
@@ -151,6 +174,11 @@ if (isset($_GET['action'])) {
          case 'delete':
 
             $controller->delete();
+            break;
+
+         case 'api':
+
+            $controller->api();
             break;
 
 
