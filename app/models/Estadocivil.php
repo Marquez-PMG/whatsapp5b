@@ -1,9 +1,7 @@
 PHP
 
 <?php
-// Modelo Estado Civil
-
-// modelo actualmente mejorado
+// Modelo EstadoCivil
 class EstadoCivil {
     private $conn;
     private $table_name = "estadocivil";
@@ -13,6 +11,13 @@ class EstadoCivil {
 
     public function __construct($db) {
         $this->conn = $db;
+    }
+
+
+    public function getAll() {
+        $db = Database::connect();
+        $query = $db->query("SELECT idestadocivil, nombre FROM estadocivil");
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Crear un nuevo estado civil

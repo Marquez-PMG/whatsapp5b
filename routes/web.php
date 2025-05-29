@@ -9,7 +9,7 @@ require_once '../app/controllers/TelefonoController.php';
 require_once '../app/controllers/EstadocivilController.php';
 
 $requestUri = $_SERVER["REQUEST_URI"];
-$basePath = '/whatsapp5b/public/';
+$basePath = '/apple6b/public/';
 // Remover el prefijo basePath
 $route = str_replace($basePath, '', $requestUri);
 $route = strtok($route, '?'); // Quitar parámetros GET
@@ -32,6 +32,14 @@ if (empty($route) || $route === '/') {
             $controller = new PersonaController();
             $controller->index();
             break;
+        case 'persona/create':
+            $controller = new PersonaController();
+            $controller->createForm();
+            break;
+
+
+
+
         case 'sexo':
         case 'sexo/index':
             $controller = new SexoController();

@@ -1,9 +1,10 @@
 <?php
+//base de datos configurada stalin francis
 class Database {
     private $host = "localhost";
-    private $db_name = "apple5a";
-    private $username = "apple5a";
-    private $password = "apple5a";
+    private $db_name = "apple6b";
+    private $username = "apple6b";
+    private $password = "apple6b";
     private $conn;
 
     public function getConnection() {

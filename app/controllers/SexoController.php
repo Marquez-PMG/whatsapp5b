@@ -5,7 +5,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 // En SexoController.php
-//Modulo sexo
+//Modulo sexo mejorado
 require_once $_SERVER['DOCUMENT_ROOT'] . '/apple6b/config/database.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/apple6b/app/models/Sexo.php';
 

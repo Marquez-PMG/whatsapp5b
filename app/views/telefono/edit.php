@@ -8,7 +8,7 @@
 <body>
 
 <h1>Editar </h1>
-<form action="/apple5a/public/sexo/update" method="POST">
+<form action="/apple6b/public/sexo/update" method="POST">
     <input type="hidden" name="idsexo" value="<?php echo htmlspecialchars($sexo['idsexo']); ?>">
     
     <label for="nombre">Nombre:</label>
