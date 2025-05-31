@@ -2,9 +2,9 @@
 //base de datos configurada stalin francis
 class Database {
     private $host = "localhost";
-    private $db_name = "apple6b";
-    private $username = "apple6b";
-    private $password = "apple6b";
+    private $db_name = "whatsapp5b";
+    private $username = "whatsapp5b";
+    private $password = "whatsapp5b";
     private $conn;
 
     public function getConnection() {

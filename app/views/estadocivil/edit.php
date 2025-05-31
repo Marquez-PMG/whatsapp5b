@@ -8,7 +8,7 @@
 <body>
 
 <h1>Editar </h1>
-<form action="/apple6b/public/estadocivil/update" method="POST">
+<form action="/whatsapp5b/public/estadocivil/update" method="POST">
     <input type="hidden" name="idestadocivil" value="<?php echo htmlspecialchars($estadocivil['idestadocivil']); ?>">
     
     <label for="nombre">Nombre:</label>

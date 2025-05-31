@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /apple6b/public/
+RewriteBase /whatsapp5b/public/
 
 # Si la solicitud no apunta a un archivo o directorio real, redirigirla a index.php
 RewriteCond %{REQUEST_FILENAME} !-f
