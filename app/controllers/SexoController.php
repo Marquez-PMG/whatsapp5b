@@ -5,7 +5,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 // En SexoController.php
-//Modulo sexo mejorado
+//Modulo mejorado
 require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp5b/config/database.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp5b/app/models/Sexo.php';
 
