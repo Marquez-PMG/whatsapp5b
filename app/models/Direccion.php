@@ -1,5 +1,5 @@
 <?php
-// Modelo Direccion
+// Archivo modificado por Enzo Portocarrero
 class Direccion {
     private $conn;
     private $table_name = "direccion";

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+// Archivo modificado por Enzo Portocarrero
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
