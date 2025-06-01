@@ -34,6 +34,30 @@ class Telefono {
         }
     }
 
+
+    // Leer todos los teléfonos
+    public function read1() {
+        try {
+            $query = "SELECT * FROM " . "telefono1";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            error_log("Error en read() para telefono: " . $e->getMessage());
+            return [];
+        }
+    }
+
+public function getAll() {
+        // Conexión a la base de datos
+        $query = $this->conn->query("SELECT *  FROM telefono");
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
     // Leer todos los teléfonos
     public function read() {
         try {
@@ -48,6 +72,10 @@ class Telefono {
             return [];
         }
     }
+
+
+   
+
 
     // Leer un solo teléfono por ID
     public function readOne() {

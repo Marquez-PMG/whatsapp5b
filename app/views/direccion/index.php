@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar direcciones</title>
+    <title>Listar Direccions</title>
     <link rel="stylesheet" href="/whatsapp5b/public/css/style.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Listar  direcciones</h1>
-    <a href="/whatsapp5b/app/views/direccion/create.php"><button>Agregar</button></a>
+    <h1>Listar  Direccions</h1>
+    <a href="/whatsapp5b/public/direccion/create"><button>Agregar</button></a>
 
     <table>
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Persona</th>
                 <th>Nombre</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($sexos) && is_array($sexos)): ?>
-                <?php foreach ($sexos as $sexo): ?>
+            <?php if (!empty($direccions) && is_array($direccions)): ?>
+                <?php foreach ($direccions as $direccion): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($sexo['idsexo']); ?></td>
-                        <td><?php echo htmlspecialchars($sexo['nombre']); ?></td>
+                        <td><?php echo htmlspecialchars($direccion['iddireccion']); ?></td>
+                        <td><?php echo htmlspecialchars($direccion['lapersona']); ?></td>
+                        <td><?php echo htmlspecialchars($direccion['nombre']); ?></td>
                         <td>
-    <a href="/whatsapp5b/public/sexo/edit?idsexo=<?php echo htmlspecialchars($sexo['idsexo']); ?>">
+    <a href="/whatsapp5b/public/direccion/edit?iddireccion=<?php echo htmlspecialchars($direccion['iddireccion']); ?>">
         <button>Editar</button>
     </a>
-    <a href="/whatsapp5b/public/sexo/eliminar?idsexo=<?php echo htmlspecialchars($sexo['idsexo']); ?>" 
+    <a href="/whatsapp5b/public/direccion/eliminar?iddireccion=<?php echo htmlspecialchars($direccion['iddireccion']); ?>" 
        onclick="return confirm('¿Estás seguro de eliminar este registro?');">
         <button>Eliminar</button>
     </a>

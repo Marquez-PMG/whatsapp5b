@@ -33,7 +33,10 @@
                         <td><?php echo htmlspecialchars($persona['apellidos']); ?></td>
                         <td><?php echo htmlspecialchars($persona['fechanacimiento']); ?></td>
                         <td><?php echo htmlspecialchars($persona['elsexo']); ?></td> <td><?php echo htmlspecialchars($persona['elestadocivil']); ?></td> <td>
-                            <a href="/whatsapp5b/public/persona/editForm?id=<?php echo htmlspecialchars($persona['idpersona']); ?>">
+                            <a href="/whatsapp5b/public/persona/view?idpersona=<?php echo htmlspecialchars($persona['idpersona']); ?>">
+                                <button>View</button>
+                            </a>
+                            <a href="/whatsapp5b/public/persona/edit?idpersona=<?php echo htmlspecialchars($persona['idpersona']); ?>">
                                 <button>Editar</button>
                             </a>
                             <a href="/whatsapp5b/public/persona/deleteForm?id=<?php echo htmlspecialchars($persona['idpersona']); ?>"

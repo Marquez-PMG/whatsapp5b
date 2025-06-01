@@ -82,22 +82,19 @@ public function read() {
     // Eliminar un sexo
     public function delete() {
         try {
-            if (empty($this->id)) {
+            if (empty($this->idsexo)) {
                 return false;
             }
-	            error_log("Intentando eliminar el ID: " . $this->id);
-
-
-
+	         error_log("Intentando eliminar el ID: " . $this->idsexo);
 
 	  // Preparar la consulta
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+        $query = "DELETE FROM " . $this->table_name . " WHERE idsexo = :idsexo";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(":idsexo", $this->idsexo, PDO::PARAM_INT);
 	
 // Ejecutar la consulta
         if ($stmt->execute()) {
-            error_log("Registro con ID " . $this->id . " eliminado correctamente.");
+            error_log("Registro con ID " . $this->idsexo . " eliminado correctamente.");
             return true;
         } else {
             error_log("Error en delete(): La consulta no se ejecutó correctamente.");

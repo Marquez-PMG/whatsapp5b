@@ -36,7 +36,31 @@ if (empty($route) || $route === '/') {
             $controller = new PersonaController();
             $controller->createForm();
             break;
-
+        case 'persona/edit':
+                if (isset($_GET['idpersona'])) {
+                    
+                    $controller = new PersonaController();
+                    $controller->edit($_GET['idpersona']);
+                } else {
+                    echo "Error: Falta el ID para editar.";
+                }
+                break;
+                case 'persona/update':
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $controller = new PersonaController();
+                        $controller->update();
+                    }
+                    break;
+         case 'persona/view':
+                if (isset($_GET['idpersona'])) {
+                    
+                    $controller = new PersonaController();
+                    $controller->registro($_GET['idpersona']);
+                } else {
+                    echo "Error: Falta el ID para editar.";
+                }
+                break;
+ 
 
 
 
@@ -78,11 +102,59 @@ if (empty($route) || $route === '/') {
             $controller = new DireccionController();
             $controller->index();
             break;
+        case 'direccion/create':
+            $controller = new DireccionController();
+            $controller->createForm();
+            break;
+        case 'direccion/edit':
+                if (isset($_GET['iddireccion'])) {
+                    
+                    $controller = new DireccionController();
+                    $controller->edit($_GET['iddireccion']);
+                } else {
+                    echo "Error: Falta el ID para editar.";
+                }
+                break;
+                case 'direccion/update':
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $controller = new DireccionController();
+                        $controller->update();
+                    }
+                    break;
+ 
+
+
+
+
+
+
+
         case 'telefono':
         case 'telefono/index':
             $controller = new TelefonoController();
             $controller->index();
             break;
+        case 'telefono/create':
+            $controller = new TelefonoController();
+            $controller->createForm();
+            break;
+        case 'telefono/edit':
+                if (isset($_GET['idtelefono'])) {
+                    
+                    $controller = new TelefonoController();
+                    $controller->edit($_GET['idtelefono']);
+                } else {
+                    echo "Error: Falta el ID para editar.";
+                }
+                break;
+                case 'telefono/update':
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $controller = new TelefonoController();
+                        $controller->update();
+                    }
+                    break;
+ 
+
         case 'estadocivil':
         case 'estadocivil/index':
             $controller = new EstadoCivilController();
@@ -103,6 +175,24 @@ if (empty($route) || $route === '/') {
                         $controller->update();
                     }
                     break;
+        case 'estadocivil/eliminar':
+            if (isset($_GET['idestadocivil'])) {
+                $controller = new EstadocivilController();
+                $controller->eliminar($_GET['idestadocivil']);
+            } else {
+                echo "Error: Falta el ID para editar.";
+            }
+            break;
+        case 'estadocivil/delete':
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $controller = new EstadocivilController();
+                $controller->delete();
+            }
+            break;
+ 
+
+
+
         default:
             echo "Error 404: Página no encontrada.";
             break;

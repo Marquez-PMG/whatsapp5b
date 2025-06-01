@@ -1,5 +1,3 @@
-PHP
-
 <?php
 // Modelo EstadoCivil
 class EstadoCivil {
@@ -15,8 +13,8 @@ class EstadoCivil {
 
 
     public function getAll() {
-        $db = Database::connect();
-        $query = $db->query("SELECT idestadocivil, nombre FROM estadocivil");
+        // Conexión a la base de datos
+        $query = $this->conn->query("SELECT * FROM estadocivil");
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 

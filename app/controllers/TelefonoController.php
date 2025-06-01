@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp5b/config/database.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp5b/app/models/Telefono.php';
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp5b/app/models/Persona.php';
 class TelefonoController {
     private $telefono;
     private $db;
@@ -14,18 +15,32 @@ class TelefonoController {
     public function __construct() {
         $this->db = (new Database())->getConnection();
         $this->telefono = new Telefono($this->db);
+        $this->persona = new Persona($this->db);
     }
 
     // Mostrar todos los teléfonos
     public function index() {
-        $telefonos = $this->telefono->read();
+        $telefonos = $this->telefono->read1();
         require_once '../app/views/telefono/index.php';
     }
+
+
+    public function createForm() {
+
+
+        $personas = $this->persona->read();
+        require_once '../app/views/telefono/create.php';
+    }
+
+
+
+
 
     public function create() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Formulario recibido";
             if (isset($_POST['numero'])) {
+                $this->telefono->idpersona = $_POST['idpersona'];
                 $this->telefono->numero = $_POST['numero'];
                 if ($this->telefono->create()) {
                     echo "Teléfono creado exitosamente";
@@ -41,9 +56,10 @@ class TelefonoController {
         die();
     }
 
-    public function edit($id) {
-        $this->telefono->id = $id;
+    public function edit($idtelefono) {
+        $this->telefono->idtelefono = $idtelefono;
         $telefono = $this->telefono->readOne();
+        $personas = $this->persona->read();
 
         if (!$telefono) {
             die("Error: No se encontró el registro.");
@@ -53,7 +69,7 @@ class TelefonoController {
     }
 
     public function eliminar($id) {
-        $this->telefono->id = $id;
+        $this->telefono->idtelefono = $idtelefono;
         $telefono = $this->telefono->readOne();
 
         if (!$telefono) {
@@ -67,8 +83,9 @@ class TelefonoController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Formulario recibido";
             if (isset($_POST['numero'])) {
+                $this->telefono->idpersona = $_POST['idpersona'];
                 $this->telefono->numero = $_POST['numero'];
-                $this->telefono->id = $_POST['id'];
+                $this->telefono->idtelefono = $_POST['idtelefono'];
                 if ($this->telefono->update()) {
                     echo "Teléfono actualizado exitosamente";
                 } else {
@@ -104,6 +121,26 @@ class TelefonoController {
         }
         die();
     }
+
+public function api() {
+
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+        $telefonos = $this->telefono->getAll();
+        header('Content-Type: application/json');
+        echo json_encode($telefonos);
+        exit;
+    }
+
+
+
+
+
+
+
+
+
 }
 
 // Manejo de la acción en la URL
@@ -112,6 +149,10 @@ if (isset($_GET['action'])) {
 
     echo "hola";
     switch ($_GET['action']) {
+        case 'createForm':
+            $controller->createForm();
+            break;
+ 
         case 'create':
             $controller->create();
             break;
@@ -121,6 +162,14 @@ if (isset($_GET['action'])) {
         case 'delete':
             $controller->delete();
             break;
+
+         case 'api':
+
+            $controller->api();
+            break;
+
+
+
         default:
             echo "Acción no válida.";
             break;

@@ -107,7 +107,7 @@ class Persona {
 
     public function getAll() {
         // Conexión a la base de datos
-        $query = $this->conn->query("SELECT idpersona, nombres, apellidos FROM persona");
+        $query = $this->conn->query("SELECT * FROM persona1");
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
